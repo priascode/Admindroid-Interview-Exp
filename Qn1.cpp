@@ -1,0 +1,121 @@
+/**** DO NOT MODIFY BLOCK - STARTS ****/
+#include <stdio.h>
+
+void admindroidMain(int size,int inputArr[][10],int weightageArray[][10]);
+void printArray(int rows,int cols,int arr[][10]);
+void validateTestCase(int testCaseId, int size, int inputArr[][10], int expectedOutputArr[][10]);
+int areArraysEqual(int rows, int cols, int array1[][10], int array2[][10]);
+
+int main() {
+    int inputArray1[10][10] = {
+        {30, 17, 20, 25, 36},
+        {29, 13, 32, 10, 21},
+        {38,  8,  8, 30,  8},
+        { 5, 36, 21, 20, 26},
+        {17, 16,  5, 24,  7}
+    };
+    int outputArray1[10][10] = { { 324, 178 } };
+    validateTestCase(1, 5, inputArray1, outputArray1);
+    int inputArray2[10][10] = {
+        {16,  9, 14,  2},
+        { 3,  6, 20, 21},
+        { 8, 17,  7, 19},
+        { 7, 12,  2,  5}
+    };
+    int outputArray2[10][10] = { { 118, 50 } };
+    validateTestCase(2, 4, inputArray2, outputArray2);
+    int inputArray3[10][10] = {
+	    { 8,  3,  6},
+		{ 3,  8, 10},
+		{ 4,  2,  9}
+    };
+    int outputArray3[10][10] = { { 45, 8 } };
+    validateTestCase(3, 3, inputArray3, outputArray3);
+    int inputArray4[10][10] = {
+    	{ 8, 10},
+    	{13, 48}
+	};
+    int outputArray4[10][10] = { { 79, 0 } };
+	validateTestCase(4, 2, inputArray4, outputArray4);
+    return 0;
+}
+
+void printArray(int rows, int cols, int arr[][10]){
+    for(int i=0;i<rows;++i){
+         for(int j=0;j<cols;++j){
+             printf("%6d", arr[i][j]); // %6d is used only for formatting.
+         }
+        printf("\n");
+     }
+     printf("\n");
+}
+
+void validateTestCase(int testCaseId, int size, int inputArr[][10], int expectedOutputArr[][10]){
+    int weightageArr[10][10] = {}; // { border weight, core weight }
+    admindroidMain(size, inputArr, weightageArr);
+    printf("Test Case %d : \n\n", testCaseId);
+    printf("Input Array : \n\n");
+    printArray(size, size, inputArr);
+    printf("Output Array : \n\n");
+    printArray(1, 2, weightageArr);
+    if(areArraysEqual(1, 2, weightageArr, expectedOutputArr) == 1)
+        printf("Result : Test Case %d Passed\n\n",testCaseId);
+    else
+        printf("Result : Test Case %d Failed\n\n",testCaseId);
+}
+
+int areArraysEqual(int rows, int cols, int array1[][10], int array2[][10]) {
+    for (int i = 0; i < rows; ++i)
+        for (int j = 0; j < cols; ++j)
+            if (array1[i][j] != array2[i][j])
+                return 0;  // Arrays are not equal
+    return 1;
+}
+
+/**** DO NOT MODIFY BLOCK - ENDS ****/
+/* UPLOAD THIS BLOCK ONLY - STARTS */
+
+/*
+Name: V.Priyadharshini
+Mobile Number: 9361306986
+Discord Name: priyadharshini0474
+College: University College of Engineering Kanchipuram
+Dept: Computer Science and Engineering
+*/
+
+void sampleFunctionJustToShowYou(); // Function definitions can be added here.
+
+void admindroidMain(int size, int inputArr[][10], int weightageArray[][10]) // Do not modify this line.
+{
+   //Do your logic here.
+   int cw=0,w=0,bw;
+   for(int i=1;i<size-1;i++){
+   	for(int j=1;j<size-1;j++){
+   		cw = cw+inputArr[i][j];//core weightage
+	   }
+   }
+//   printf("%d",cw);
+   for(int i=0;i<size;i++){
+   	for(int j=0;j<size;j++){
+   		w=w+inputArr[i][j];
+	   }
+   }
+   bw = w-cw;//border weight =whole weight - core weight
+   
+   for(int i=0;i<1;i++){
+   	
+   		weightageArray[i][0]=bw;
+   		weightageArray[i][1]=cw;
+	   
+   }
+   
+   sampleFunctionJustToShowYou();	// Just showing for a demo. You can use your own functions.
+}
+
+// You can add extra functions here.
+
+void sampleFunctionJustToShowYou() { 	// Just showing for a demo. You can use your own functions if needed.
+	// Some code here...
+}
+
+/* UPLOAD THIS BLOCK ONLY - ENDS */
